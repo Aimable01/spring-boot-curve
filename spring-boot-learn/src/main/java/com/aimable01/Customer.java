@@ -1,8 +1,21 @@
 package com.aimable01;
 
+import jakarta.persistence.*;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+
 import java.util.Objects;
 
+@Entity
 public class Customer {
+    @Id
+    @SequenceGenerator(
+            name = "customer_id_sequence",
+            sequenceName = "customer_id_sequence"
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "customer_id_sequence"
+    )
     private Integer id;
     private String name;
     private String email;
@@ -13,6 +26,10 @@ public class Customer {
         this.name = name;
         this.email = email;
         this.age = age;
+    }
+
+    public Customer() {
+
     }
 
     public Integer getId() {

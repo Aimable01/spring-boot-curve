@@ -15,31 +15,32 @@ public class Main {
         SpringApplication.run(Main.class, args);
     }
 
-    @GetMapping("/")
-    public GreetResponse greet(){
-        return new GreetResponse(
-                "Hello",
-                List.of("Java","Golang","Javascript"),
-                new Person("Alex",23,43_000)
-        );
-    }
-
-    record Person(String name, int age, double savings){}
-
-    record GreetResponse(
-        String greet,
-        List<String> favProgrammingLanguages,
-        Person person
-    ){}
-
-    // to practice usage of records
-    record Car(String name, int kilos){}
-    record StartCar(boolean on,Car car){}
-
-    @GetMapping("/car")
-    public StartCar startCar(){
-        return new StartCar(
-                true,new Car("Maserati",45_000)
-        );
-    }
+//
+//    @GetMapping("/")
+//    public GreetResponse greet(){
+//        return new GreetResponse(
+//                "Hello",
+//                List.of("Java","Golang","Javascript"),
+//                new Person("Alex",23,43_000)
+//        );
+//    }
+//
+//    record Person(String name, int age, double savings){}
+//
+//    record GreetResponse(
+//        String greet,
+//        List<String> favProgrammingLanguages,
+//        Person person
+//    ){}
+//
+//    // to practice usage of records
+//    record Car(String name, int kilos){}
+//    record StartCar(boolean on,Car car){}
+//
+//    @GetMapping("/car")
+//    public StartCar startCar(){
+//        return new StartCar(
+//                true,new Car("Maserati",45_000)
+//        );
+//    }
 }
