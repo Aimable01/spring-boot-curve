@@ -72,4 +72,16 @@ public class Main {
     public void deleteCustomer(@PathVariable("customerId") Integer id) {
         customerRepository.deleteById(id);
     }
+
+    record EditCustomerRequest(String name, String email, Integer age) {}
+
+    @PatchMapping("{customerId}")
+    public void updateCustomer(@PathVariable("customerId") Integer id, @RequestBody EditCustomerRequest request) {
+        Customer customer = customerRepository.findById(id).orElse(null);
+        customer.setName(request.name());
+        customer.setEmail(request.email());
+        customer.setAge(request.age());
+        customerRepository.save(customer);
+    }
+
 }
