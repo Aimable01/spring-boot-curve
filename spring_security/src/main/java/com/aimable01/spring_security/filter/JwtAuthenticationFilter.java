@@ -1,7 +1,7 @@
 package com.aimable01.spring_security.filter;
 
 import com.aimable01.spring_security.service.JwtService;
-import com.aimable01.spring_security.service.UserDetailsImpl;
+import com.aimable01.spring_security.service.UserDetailsServiceImp;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -20,9 +20,9 @@ import java.io.IOException;
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final JwtService jwtService;
-    private final UserDetailsImpl userDetailsService;
+    private final UserDetailsServiceImp userDetailsService;
 
-    public JwtAuthenticationFilter(JwtService jwtService, UserDetailsImpl userDetailsService) {
+    public JwtAuthenticationFilter(JwtService jwtService, UserDetailsServiceImp userDetailsService) {
         this.jwtService = jwtService;
         this.userDetailsService = userDetailsService;
     }
