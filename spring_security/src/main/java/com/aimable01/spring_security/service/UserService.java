@@ -26,7 +26,8 @@ public class UserService {
 
     public Users register(Users user) {
         user.setPassword(encoder.encode(user.getPassword()));
-        return repo.save(user);
+        repo.save(user);
+        return user;
     }
 
     public String verify(Users user) {

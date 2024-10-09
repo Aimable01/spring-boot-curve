@@ -1,15 +1,30 @@
 package com.aimable01.spring_security.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "users")
 public class Users {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id")
     private int id;
+
+    @Column(name = "first name")
+    private String firstName;
+
+    @Column(name = "last name")
+    private String lastName;
+
+    @Column(name = "username")
     private String username;
+
+    @Column(name = "password")
     private String password;
+
+    @Enumerated(value = EnumType.STRING)
+    Role role;
 
     public int getId() {
         return id;
@@ -17,6 +32,22 @@ public class Users {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getUsername() {
@@ -35,8 +66,11 @@ public class Users {
         this.password = password;
     }
 
-    @Override
-    public String toString() {
-        return "Users [id=" + id + ", username=" + username + ", password=" + password + "]";
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }
