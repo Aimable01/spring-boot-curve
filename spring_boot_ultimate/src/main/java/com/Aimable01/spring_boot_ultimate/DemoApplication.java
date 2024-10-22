@@ -14,8 +14,11 @@ public class DemoApplication implements CommandLineRunner {
 
 	private ColourPrinter colourPrinter;
 
-	public DemoApplication(ColourPrinter colourPrinter) {
+	private PizzaConfig pizzaConfig;
+
+	public DemoApplication(ColourPrinter colourPrinter, PizzaConfig pizzaConfig) {
 		this.colourPrinter = colourPrinter;
+		this.pizzaConfig = pizzaConfig;
 	}
 
 	public static void main(String[] args) {
@@ -28,7 +31,6 @@ public class DemoApplication implements CommandLineRunner {
 		// log.info(colourPrinter.print());
 
 		// pizza application
-		final PizzaConfig pizzaConfig = new PizzaConfig("tomato","mozzarella","thin");
 
 		log.info(
 				String.format("I want a %s crust pizza, with %s and %s sauce",
