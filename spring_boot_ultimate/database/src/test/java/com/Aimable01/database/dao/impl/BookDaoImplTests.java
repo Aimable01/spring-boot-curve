@@ -1,4 +1,4 @@
-package com.Aimable01.database.dao;
+package com.Aimable01.database.dao.impl;
 
 import com.Aimable01.database.dao.Impl.BookDaoImpl;
 import com.Aimable01.database.domain.Book;
