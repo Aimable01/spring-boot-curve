@@ -1,5 +1,6 @@
 package com.Aimable01.spring_boot_ultimate;
 
+import com.Aimable01.spring_boot_ultimate.config.PizzaConfig;
 import com.Aimable01.spring_boot_ultimate.services.ColourPrinter;
 import com.Aimable01.spring_boot_ultimate.services.impl.ColourPrintImpl;
 import lombok.extern.java.Log;
@@ -23,6 +24,17 @@ public class DemoApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) {
-		log.info(colourPrinter.print());
+
+		// log.info(colourPrinter.print());
+
+		// pizza application
+		final PizzaConfig pizzaConfig = new PizzaConfig("tomato","mozzarella","thin");
+
+		log.info(
+				String.format("I want a %s crust pizza, with %s and %s sauce",
+						pizzaConfig.getCrust(),
+						pizzaConfig.getTopping(),
+						pizzaConfig.getSauce())
+		);
 	}
 }
