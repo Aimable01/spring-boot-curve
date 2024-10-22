@@ -1,5 +1,6 @@
 package com.Aimable01.database.dao.impl;
 
+import com.Aimable01.database.TestDataUtil;
 import com.Aimable01.database.dao.Impl.AuthorDaoImpl;
 import com.Aimable01.database.domain.Author;
 import org.junit.jupiter.api.Test;
@@ -24,11 +25,7 @@ public class AuthorDaoImplTests {
 
     @Test
     public void testThatCreateAuthorGeneratesTheCorrectSql(){
-        Author author = Author.builder()
-                .id(1L)
-                .name("Abigail Rose")
-                .age(80)
-                .build();
+        Author author = TestDataUtil.createTestAuthor();
 
         underTest.create(author);
 

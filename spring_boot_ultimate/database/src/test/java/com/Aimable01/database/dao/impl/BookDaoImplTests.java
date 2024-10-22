@@ -1,5 +1,6 @@
 package com.Aimable01.database.dao.impl;
 
+import com.Aimable01.database.TestDataUtil;
 import com.Aimable01.database.dao.Impl.BookDaoImpl;
 import com.Aimable01.database.domain.Book;
 import org.junit.jupiter.api.Test;
@@ -23,11 +24,7 @@ public class BookDaoImplTests {
 
     @Test
     public void testThatCreateBookGeneratesTheCorrectSql(){
-        Book book = Book.builder()
-                .isbn("123-456-789")
-                .title("The Shadow in the Attic")
-                .authorId(1L)
-                .build();
+        Book book = TestDataUtil.createTestBook();
 
         underTest.create(book);
 
@@ -36,4 +33,5 @@ public class BookDaoImplTests {
                 eq("123-456-789"),eq("The Shadow in the Attic"),eq(1L)
         );
     }
+
 }
