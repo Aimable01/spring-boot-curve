@@ -4,7 +4,9 @@ import com.Aimable01.spring_boot_ultimate.services.BluePrinter;
 import com.Aimable01.spring_boot_ultimate.services.ColourPrinter;
 import com.Aimable01.spring_boot_ultimate.services.GreenPrinter;
 import com.Aimable01.spring_boot_ultimate.services.RedPrinter;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ColourPrintImpl implements ColourPrinter {
     private RedPrinter redPrinter;
     private GreenPrinter greenPrinter;
