@@ -31,9 +31,25 @@ public final class TestDataUtil {
                 .build();
     }
 
-    public static Book createTestBook() {
+    public static Book createTestBookA() {
         return Book.builder()
                 .isbn("123-456-789")
+                .title("The Shadow in the Attic")
+                .authorId(1L)
+                .build();
+    }
+
+    public static Book createTestBookB() {
+        return Book.builder()
+                .isbn("223-456-789")
+                .title("The Shadow in the Attic")
+                .authorId(1L)
+                .build();
+    }
+
+    public static Book createTestBookC() {
+        return Book.builder()
+                .isbn("323-456-789")
                 .title("The Shadow in the Attic")
                 .authorId(1L)
                 .build();
