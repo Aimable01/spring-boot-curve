@@ -67,4 +67,12 @@ public class BookDaoImplTests {
                 "123-456-789", "The Shadow in the Attic", 1L, "123-456-789"
         );
     }
+
+    @Test
+    public void testThatDeleteGeneratesTheCorrectSql(){
+        underTest.delete("123-456-789");
+        verify(jdbcTemplate).update(
+                "DELETE FROM books WHERE isbn = ? ", "123-456-789"
+        );
+    }
 }
