@@ -7,10 +7,26 @@ public final class TestDataUtil {
 
     private TestDataUtil() {}
 
-    public static Author createTestAuthor() {
+    public static Author createTestAuthorA() {
         return Author.builder()
                 .id(1L)
                 .name("Abigail Rose")
+                .age(80)
+                .build();
+    }
+
+    public static Author createTestAuthorB() {
+        return Author.builder()
+                .id(2L)
+                .name("kwizera")
+                .age(80)
+                .build();
+    }
+
+    public static Author createTestAuthorC() {
+        return Author.builder()
+                .id(3L)
+                .name("aiamble")
                 .age(80)
                 .build();
     }
