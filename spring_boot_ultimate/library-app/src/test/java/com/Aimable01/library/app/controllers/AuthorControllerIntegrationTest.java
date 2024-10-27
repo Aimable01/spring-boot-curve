@@ -1,5 +1,6 @@
 package com.Aimable01.library.app.controllers;
 
+import com.Aimable01.library.app.TestDataUtil;
 import com.Aimable01.library.app.domain.entities.AuthorEntity;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -12,6 +13,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
@@ -29,12 +31,17 @@ public class AuthorControllerIntegrationTest {
     }
 
     @Test
-    public void testThatCreateAuthorSuccessfullyReturnsHttp201Created(){
-        AuthorEntity testAuthorA = TestData
+    public void testThatCreateAuthorSuccessfullyReturnsHttp201Created() throws Exception {
+        AuthorEntity testAuthorA = TestDataUtil.createTestAuthorEntityA();
+        testAuthorA.setId(null);
+        String authorJson = objectMapper.writeValueAsString(testAuthorA);
+
         mockMvc.perform(
                 MockMvcRequestBuilders.post("/authors")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content()
-        )
+                        .content(authorJson)
+        ).andExpect(
+                MockMvcResultMatchers.status().isCreated()
+        );
     }
 }
