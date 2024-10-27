@@ -1,6 +1,8 @@
 package com.Aimable01.library.app.controllers;
 
 import com.Aimable01.library.app.domain.dto.AuthorDto;
+import com.Aimable01.library.app.domain.entities.AuthorEntity;
+import com.Aimable01.library.app.mappers.Mapper;
 import com.Aimable01.library.app.services.AuthorService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,13 +12,17 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthorController {
 
     private AuthorService authorService;
+    private Mapper<AuthorEntity, AuthorDto> authorMapper;
 
-    public AuthorController(AuthorService authorService) {
+    public AuthorController(AuthorService authorService, Mapper<AuthorEntity, AuthorDto> authorMapper) {
         this.authorService = authorService;
+        this.authorMapper = authorMapper;
     }
 
     @PostMapping(path = "/authors")
     public AuthorDto createAuthor(@RequestBody AuthorDto author) {
-        return authorService.createAuthor(author);
+        AuthorEntity authorEntity =  authorMapper.mapFrom(author);
+        AuthorEntity savedAuthorEntity = authorService.createAuthor(authorEntity);
+        return authorMapper.mapTo(savedAuthorEntity);
     }
 }
