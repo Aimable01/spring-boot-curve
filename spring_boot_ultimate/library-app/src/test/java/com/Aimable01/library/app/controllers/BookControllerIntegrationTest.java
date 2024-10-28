@@ -2,6 +2,8 @@ package com.Aimable01.library.app.controllers;
 
 import com.Aimable01.library.app.TestDataUtil;
 import com.Aimable01.library.app.domain.dto.BookDto;
+import com.Aimable01.library.app.domain.entities.BookEntity;
+import com.Aimable01.library.app.services.BookService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -23,11 +25,13 @@ public class BookControllerIntegrationTest {
 
     private MockMvc mockMvc;
     private ObjectMapper objectMapper;
+    private BookService bookService;
 
     @Autowired
-    public BookControllerIntegrationTest(MockMvc mockMvc) {
+    public BookControllerIntegrationTest(MockMvc mockMvc, BookService bookService) {
         this.mockMvc = mockMvc;
         this.objectMapper = new ObjectMapper();
+        this.bookService = bookService;
     }
 
     @Test
@@ -55,6 +59,30 @@ public class BookControllerIntegrationTest {
                 MockMvcResultMatchers.jsonPath("$.isbn").value(bookDto.getIsbn())
         ).andExpect(
                 MockMvcResultMatchers.jsonPath("$.title").value(bookDto.getTitle())
+        );
+    }
+
+    @Test
+    public void testThatListBooksReturnsHttpStatus200Ok() throws Exception {
+        mockMvc.perform(
+                MockMvcRequestBuilders.get("/books")
+                        .contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
+    @Test
+    public void testThatListBooksReturnsCreatedBooks() throws Exception {
+
+        BookEntity testBookEntity = TestDataUtil.createTestBookEntityA(null);
+        bookService.createBook(testBookEntity.getIsbn(),testBookEntity);
+
+        mockMvc.perform(
+                MockMvcRequestBuilders.get("/books")
+                        .contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(
+                MockMvcResultMatchers.jsonPath("$[0].isbn").value("978-1-2345-6789-0")
+        ).andExpect(
+                MockMvcResultMatchers.jsonPath("$[0].title").value("The Shadow in the Attic")
         );
     }
 }
