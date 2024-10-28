@@ -1,6 +1,7 @@
 package com.Aimable01.library.app;
 
 import com.Aimable01.library.app.domain.dto.AuthorDto;
+import com.Aimable01.library.app.domain.dto.BookDto;
 import com.Aimable01.library.app.domain.entities.AuthorEntity;
 import com.Aimable01.library.app.domain.entities.BookEntity;
 
@@ -61,6 +62,14 @@ public final class TestDataUtil {
                 .isbn("978-1-2345-6789-2")
                 .title("The Last Ember")
                 .author(authorEntity)
+                .build();
+    }
+
+    public static BookDto createTestBookDtoA(final AuthorDto author) {
+        return BookDto.builder()
+                .isbn("978-1-2345-6789-0")
+                .title("The Shadow in the Attic")
+                .author(author)
                 .build();
     }
 }
