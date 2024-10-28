@@ -74,7 +74,7 @@ public class BookControllerIntegrationTest {
     public void testThatListBooksReturnsCreatedBooks() throws Exception {
 
         BookEntity testBookEntity = TestDataUtil.createTestBookEntityA(null);
-        bookService.createBook(testBookEntity.getIsbn(),testBookEntity);
+        bookService.createUpdateBook(testBookEntity.getIsbn(),testBookEntity);
 
         mockMvc.perform(
                 MockMvcRequestBuilders.get("/books")
@@ -90,7 +90,7 @@ public class BookControllerIntegrationTest {
     public void testThatGetBookReturnsHttpStatus200OkWhenBookExists() throws Exception {
 
         BookEntity testBookEntity = TestDataUtil.createTestBookEntityA(null);
-        bookService.createBook(testBookEntity.getIsbn(),testBookEntity);
+        bookService.createUpdateBook(testBookEntity.getIsbn(),testBookEntity);
 
         mockMvc.perform(
                 MockMvcRequestBuilders.get("/books/" + testBookEntity.getIsbn())
