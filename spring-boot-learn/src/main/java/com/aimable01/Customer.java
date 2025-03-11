@@ -20,6 +20,7 @@ public class Customer {
     private String name;
     private String email;
     private Integer age;
+    private String wigo;
 
     public Customer(Integer id, String name, String email, Integer age) {
         this.id = id;
