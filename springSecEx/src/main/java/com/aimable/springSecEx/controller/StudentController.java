@@ -1,5 +1,6 @@
-package com.aimable.springSecEx;
+package com.aimable.springSecEx.controller;
 
+import com.aimable.springSecEx.model.Student;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.GetMapping;

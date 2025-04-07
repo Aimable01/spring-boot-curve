@@ -1,4 +1,4 @@
-package com.aimable.springSecEx;
+package com.aimable.springSecEx.model;
 
 public class Student {
     private  int id;
