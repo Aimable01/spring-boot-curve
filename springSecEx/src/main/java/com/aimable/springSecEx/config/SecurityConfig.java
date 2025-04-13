@@ -41,6 +41,7 @@ public class SecurityConfig {
                         .requestMatchers("register","login")
                         .permitAll()
                         .anyRequest().authenticated())
+                .oauth2Login(Customizer.withDefaults()) // for google/github oauth login
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
